@@ -1020,14 +1020,14 @@ do
             PickerFrameOuter.Visible = false
             Library.OpenedFrames[PickerFrameOuter] = nil
         end
-        function ColorPicker:SetValue(HSV, Transparency)
-            local Color = HSV(HSV[1], HSV[2], HSV[3])
+function ColorPicker:SetValue(Data, Transparency)
+    local Color = HSV(Data[1], Data[2], Data[3])
 
-            ColorPicker.Transparency = Transparency or 0
+    ColorPicker.Transparency = Transparency or 0
 
-            ColorPicker:SetHSVFromRGB(Color)
-            ColorPicker:Display()
-        end
+    ColorPicker:SetHSVFromRGB(Color)
+    ColorPicker:Display()
+end
         function ColorPicker:SetValueRGB(Color, Transparency)
             ColorPicker.Transparency = Transparency or 0
 
