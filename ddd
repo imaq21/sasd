@@ -1021,12 +1021,20 @@ do
             Library.OpenedFrames[PickerFrameOuter] = nil
         end
 function ColorPicker:SetValue(Data, Transparency)
-    local Color = HSV(Data[1], Data[2], Data[3])
+    if typeof(Data) == 'Color3' then
+        ColorPicker.Transparency = Transparency or 0
+        ColorPicker:SetHSVFromRGB(Data)
+        ColorPicker:Display()
+        return
+    end
 
-    ColorPicker.Transparency = Transparency or 0
-
-    ColorPicker:SetHSVFromRGB(Color)
-    ColorPicker:Display()
+    if type(Data) == 'table' and Data[1] and Data[2] and Data[3] then
+        local Color = HSV(Data[1], Data[2], Data[3])
+        ColorPicker.Transparency = Transparency or 0
+        ColorPicker:SetHSVFromRGB(Color)
+        ColorPicker:Display()
+        return
+    end
 end
         function ColorPicker:SetValueRGB(Color, Transparency)
             ColorPicker.Transparency = Transparency or 0
